@@ -1,10 +1,15 @@
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleUsernameChange = (e) => setUsername(e.target.value);
@@ -14,6 +19,27 @@ function Signup() {
     e.preventDefault();
 
     // ... contact backend to register the user
+    const newUser = {
+      email,
+      username,
+      password
+    }
+
+    try {
+      
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/signup`, newUser)
+      console.log(response)
+      navigate("/login")
+
+    } catch (error) {
+      console.log(error)
+      if (error.response && error.response.status === 400 ) {
+        setErrorMessage(error.response.data.errorMessage)
+      } else {
+        navigate("/error")
+      }
+    }
+
   };
 
   return (
@@ -54,6 +80,9 @@ function Signup() {
         <br />
 
         <button type="submit">Signup</button>
+
+        {errorMessage && <p>{errorMessage}</p>}
+
       </form>
       
     </div>
