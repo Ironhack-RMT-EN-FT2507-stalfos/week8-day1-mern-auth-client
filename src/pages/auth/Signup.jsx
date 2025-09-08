@@ -13,17 +13,17 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // ... contactar al backend para registrar al usuario aqui
+    // ... contact backend to register the user
   };
 
   return (
     <div>
 
-      <h1>Formulario de Registro</h1>
+      <h1>Signup Form</h1>
     
       <form onSubmit={handleSignup}>
 
-        <label>Correo Electronico:</label>
+        <label>Email:</label>
         <input
           type="email"
           name="email"
@@ -43,7 +43,7 @@ function Signup() {
 
         <br />
 
-        <label>Contraseña:</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
@@ -53,7 +53,7 @@ function Signup() {
 
         <br />
 
-        <button type="submit">Registrar</button>
+        <button type="submit">Signup</button>
       </form>
       
     </div>

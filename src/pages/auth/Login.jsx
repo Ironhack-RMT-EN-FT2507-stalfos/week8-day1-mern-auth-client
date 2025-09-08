@@ -11,16 +11,16 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // ... contactar al backend para validar credenciales de usuario aqui
+    // ... contact backend to validate user credentials
   };
 
   return (
     <div>
 
-      <h1>Formulario de Acceso</h1>
+      <h1>Login Form</h1>
 
       <form onSubmit={handleLogin}>
-        <label>Correo Electronico:</label>
+        <label>Email:</label>
         <input
           type="email"
           name="email"
@@ -30,7 +30,7 @@ function Login() {
 
         <br />
 
-        <label>Contraseña:</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
@@ -40,7 +40,7 @@ function Login() {
 
         <br />
 
-        <button type="submit">Acceder</button>
+        <button type="submit">Login</button>
       </form>
       
     </div>

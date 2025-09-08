@@ -23,8 +23,8 @@ function PrivatePageExample() {
   return (
     <div>
       
-      <h3>Ejemplo de página privada</h3>
-      <p>Solo usuarios que hayan validado credenciales deberian poder acceder y ver la siguiente información:</p>
+      <h3>Private Page Example</h3>
+      <p>Should only be visible for logged in users that already validated their credentials (login) and have a valid token</p>
 
     </div>
   )
