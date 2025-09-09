@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import service from "../services/config.services";
 import { createContext, useEffect, useState } from "react";
 
 // context component (component that sends the state contexts and functions)
@@ -10,6 +11,7 @@ function AuthWrapper(props) {
   // context states and functions
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loggedUserId, setLoggedUserId] = useState(null)
+  const [role, setRole] = useState(null)
   const [isAuthenticating, setIsAuthenticating] = useState(true)
 
   useEffect(() => {
@@ -20,20 +22,23 @@ function AuthWrapper(props) {
   const authenticateUser = async () => {
     // this is the function that sends the token to the backend to verify it validity and received info about the owner of that token
 
-    const authToken = localStorage.getItem("authToken")
+    // const authToken = localStorage.getItem("authToken")
 
     try {
       
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/auth/verify`, {
-        headers: {
-          authorization: `Bearer ${authToken}`
-        }
-      })
+      // const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/auth/verify`, {
+      //   headers: {
+      //     authorization: `Bearer ${authToken}`
+      //   }
+      // })
+
+      const response = await service.get("/auth/verify")
 
       // if we get to this point it means that the backend validated the token
       console.log(response)
       setIsLoggedIn(true)
       setLoggedUserId(response.data._id)
+      setRole(response.data.role)
       setIsAuthenticating(false)
 
     } catch (error) {
@@ -41,6 +46,7 @@ function AuthWrapper(props) {
       console.log(error)
       setIsLoggedIn(false)
       setLoggedUserId(null)
+      setRole(null)
       setIsAuthenticating(false)
     }
 
@@ -49,6 +55,7 @@ function AuthWrapper(props) {
   const passedContext = {
     isLoggedIn,
     loggedUserId,
+    role,
     authenticateUser
   }
 

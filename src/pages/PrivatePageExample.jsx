@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../context/auth.context'
 
 function PrivatePageExample() {
+
+  const { role } = useContext(AuthContext)
 
   const [dataOnlyForLoggedUsers, setData] = useState(null)
 
@@ -25,6 +28,8 @@ function PrivatePageExample() {
       
       <h3>Private Page Example</h3>
       <p>Should only be visible for logged in users that already validated their credentials (login) and have a valid token</p>
+
+      {role === "admin" && <button>Self-destruct</button> }
 
     </div>
   )

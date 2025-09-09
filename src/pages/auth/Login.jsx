@@ -1,4 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
+import service from "../../services/config.services.js"
+
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
@@ -27,7 +29,8 @@ function Login() {
 
     try {
       
-      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, userCredentials)
+      // const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, userCredentials)
+      const response = await service.post("/auth/login", userCredentials)
       console.log(response)
 
       //* the user is now authenticated
